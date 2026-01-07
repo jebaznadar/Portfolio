@@ -2069,6 +2069,11 @@ const konamiSequence = [
   'b','a'
 ];
 
+console.log(
+  "%c👋 Hello, Fellow developer.\nIf you’re here, you probably care about clean code.\nSo do I.",
+  "color: #22c55e; font-size: 16px; font-weight: bold;"
+);
+
 document.addEventListener('keydown', (e) => {
   konamiCode.push(e.key);
   konamiCode.splice(-konamiSequence.length - 1, konamiCode.length - konamiSequence.length);
