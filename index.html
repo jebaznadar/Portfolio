@@ -215,6 +215,10 @@
             background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
             animation: pulse 8s ease-in-out infinite;
         }
+        @keyframes rainbow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
 
         /* Subtle KTM Hint */
         .ktm-hint {
@@ -2056,20 +2060,27 @@
         });
 
         // Easter egg - Konami code
-        let konamiCode = [];
-        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
-        
-        document.addEventListener('keydown', (e) => {
-            konamiCode.push(e.keyCode);
-            konamiCode.splice(-konamiSequence.length - 1, konamiCode.length - konamiSequence.length);
-            
-            if (konamiCode.join('').includes(konamiSequence.join(''))) {
-                document.body.style.animation = 'rainbow 2s linear infinite';
-                setTimeout(() => {
-                    document.body.style.animation = '';
-                }, 5000);
-            }
-        });
+       let konamiCode = [];
+const konamiSequence = [
+  'ArrowUp','ArrowUp',
+  'ArrowDown','ArrowDown',
+  'ArrowLeft','ArrowRight',
+  'ArrowLeft','ArrowRight',
+  'b','a'
+];
+
+document.addEventListener('keydown', (e) => {
+  konamiCode.push(e.key);
+  konamiCode.splice(-konamiSequence.length - 1, konamiCode.length - konamiSequence.length);
+
+  if (konamiCode.join(',') === konamiSequence.join(',')) {
+    document.body.style.animation = 'rainbow 2s linear infinite';
+    setTimeout(() => {
+      document.body.style.animation = '';
+    }, 5000);
+  }
+});
+
 
         // Add keyframe animations for notification
         const style = document.createElement('style');
